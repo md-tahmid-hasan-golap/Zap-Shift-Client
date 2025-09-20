@@ -1,8 +1,28 @@
-import React from "react";
-import { Link, NavLink } from "react-router";
+import React, { useContext } from "react";
+import { Link, NavLink, useNavigate } from "react-router";
 import ProFastLogo from "../ProFastLogo/ProFastLogo";
+import { AuthContext } from "../../../firebase/FirebaseAuthProvider";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const handelLogout = () => {
+    logOut()
+      .then((result) => {
+        console.log(result);
+        Swal.fire({
+          title: "Logout Successfull!",
+          icon: "success",
+          draggable: true,
+          timer: 1500,
+        });
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   const navItems = (
     <>
       <li>
@@ -65,9 +85,27 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{navItems}</ul>
       </div>
       <div className="navbar-end">
-        <Link to="/login" className="btn">
-          Login
-        </Link>
+        {user ? (
+          <div className="navbar-end gap-3">
+            <img
+              className="rounded-full h-10 w-10 border-2 border-green-600 shadow-md hover:scale-105 transition-transform duration-300"
+              src={user?.photoURL}
+              title={user?.displayName}
+              alt="User Profile"
+            />
+
+            <button onClick={handelLogout} className="btn text-red-500">
+              LogOut
+            </button>
+          </div>
+        ) : (
+          <div className="navbar-end">
+            {" "}
+            <Link to="/login" className="btn">
+              Login
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );
