@@ -7,6 +7,7 @@ import Register from "../Pages/Authintication/Register/Register";
 import ErrorPage from "../Pages/Home/ErrorPage";
 import Covarage from "../Pages/Covarage/Covarage";
 import BranchMap from "../Pages/Covarage/Covarage";
+import AboutUs from "../Pages/AboutUs/AboutUs";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
+      },
+      {
+        path: "/aboutUs",
+        Component: AboutUs,
       },
       {
         path: "/coverage",
