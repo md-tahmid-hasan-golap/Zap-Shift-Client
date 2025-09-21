@@ -5,6 +5,8 @@ import AuthLayouts from "../Layouts/AuthLayouts";
 import Login from "../Pages/Authintication/Login/Login";
 import Register from "../Pages/Authintication/Register/Register";
 import ErrorPage from "../Pages/Home/ErrorPage";
+import Covarage from "../Pages/Covarage/Covarage";
+import BranchMap from "../Pages/Covarage/Covarage";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +17,11 @@ const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
+      },
+      {
+        path: "/coverage",
+        Component: BranchMap,
+        loader: () => fetch("./warehouses.json"),
       },
     ],
   },

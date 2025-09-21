@@ -47,6 +47,17 @@ const Navbar = () => {
           About Us
         </NavLink>
       </li>
+      <li>
+        {" "}
+        <NavLink
+          to="/coverage"
+          className={({ isActive }) =>
+            isActive ? "btn bg-blue-600 text-white mr-2" : "btn mr-2"
+          }
+        >
+          Coverage
+        </NavLink>
+      </li>
     </>
   );
   return (
@@ -93,6 +104,8 @@ const Navbar = () => {
               title={user?.displayName}
               alt="User Profile"
             />
+
+            <h3 className="text-2xl font-bold">{user?.displayName}</h3>
 
             <button onClick={handelLogout} className="btn text-red-500">
               LogOut
