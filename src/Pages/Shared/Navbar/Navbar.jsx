@@ -35,6 +35,16 @@ const Navbar = () => {
           Home
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to="/sendParcel"
+          className={({ isActive }) =>
+            isActive ? "btn bg-blue-600 text-white mr-2" : "btn mr-2"
+          }
+        >
+          Send A Parcel
+        </NavLink>
+      </li>
 
       <li>
         {" "}
@@ -58,6 +68,22 @@ const Navbar = () => {
           Coverage
         </NavLink>
       </li>
+
+      {user && (
+        <>
+          <li>
+            {" "}
+            <NavLink
+              to="/dashbord"
+              className={({ isActive }) =>
+                isActive ? "btn bg-blue-600 text-white mr-2" : "btn mr-2"
+              }
+            >
+              Dashbord
+            </NavLink>
+          </li>
+        </>
+      )}
     </>
   );
   return (

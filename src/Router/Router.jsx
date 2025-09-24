@@ -5,9 +5,12 @@ import AuthLayouts from "../Layouts/AuthLayouts";
 import Login from "../Pages/Authintication/Login/Login";
 import Register from "../Pages/Authintication/Register/Register";
 import ErrorPage from "../Pages/Home/ErrorPage";
-import Covarage from "../Pages/Covarage/Covarage";
 import BranchMap from "../Pages/Covarage/Covarage";
 import AboutUs from "../Pages/AboutUs/AboutUs";
+import PrivateRouter from "../Routes/PrivateRouter";
+import SendParcel from "../Pages/SendParcel/SendParcel";
+import DashBoardAayouts from "../Layouts/DashBoardAayouts";
+import Myparcel from "../Pages/Dashbord/Myparcel/Myparcel";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +31,14 @@ const router = createBrowserRouter([
         Component: BranchMap,
         loader: () => fetch("./warehouses.json"),
       },
+      {
+        path: "/sendParcel",
+        element: (
+          <PrivateRouter>
+            <SendParcel></SendParcel>
+          </PrivateRouter>
+        ),
+      },
     ],
   },
   {
@@ -41,6 +52,20 @@ const router = createBrowserRouter([
       {
         path: "/register",
         Component: Register,
+      },
+    ],
+  },
+  {
+    path: "/dashbord",
+    element: (
+      <PrivateRouter>
+        <DashBoardAayouts />
+      </PrivateRouter>
+    ),
+    children: [
+      {
+        path: "myParcel", // ✅ relative path
+        element: <Myparcel />,
       },
     ],
   },
